@@ -1,0 +1,17 @@
+service: github-webhook-listener
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  environment:
+    GITHUB_WEBHOOK_SECRET: 97c4bf842449291703f11fcf589b00b2329a0985
+  role: arn:aws:iam::392352888985:policy/jenkins-secrets-manager-policy
+
+functions:
+  githubWebhookListener:
+    handler: handler.githubWebhookListener
+    events:
+      - http:
+          path: webhook
+          method: post
+          cors: true
