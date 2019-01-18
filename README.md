@@ -53,4 +53,4 @@ This repo cotanins code to run a GitHub webhook listener for use with GitHub <->
   serverless deploy
   ```
 The GitHub Webhook obtains Jenkins credentials and the GITHUB_WEBHOOK_SERCRET using AWS Secrets Manager - there is no need to specify these manually.  
-1. Follow the [internal documentation](https://colibrigroup.atlassian.net/wiki/spaces/ENG/pages/180518931/GitHub+%3C-%3E+Jenkins+Webhook) for setting up a repository with the webhook.  
+2. Follow the [internal documentation](https://colibrigroup.atlassian.net/wiki/spaces/ENG/pages/180518931/GitHub+%3C-%3E+Jenkins+Webhook) for setting up a repository with the webhook.  
