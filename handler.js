@@ -2,6 +2,7 @@
 
 const crypto = require('crypto');
 const rp = require('request-promise');
+const secretManager = require('secretManager');
 
 function signRequestBody(key, body) {
     return `sha1=${crypto.createHmac('sha1', key).update(body, 'utf-8').digest('hex')}`;
@@ -73,13 +74,14 @@ module.exports.githubWebhookListener = async (event, context) => {
 
     /* Jenkins Handler Code */
     const data = JSON.parse(event.body);
+    const secrets = secretManager("jenkins-prod-secrets");
 
     console.log('********** Executing Jenkins Job **********');
     console.log('Repo Name:\t', data.repository.name);
     console.log('Ref Name:\t', data.ref);
     console.log('Commit ID:\t', data.commits[0].id);
     console.log('Committer:\t', data.head_commit.committer.name);
-    const url = 'https://@jenkins.colibrigroup.com/job/' + data.repository.name + '/build?delay=0sec';
+    const url = 'http://' + secrets.jenkins_username + ':' + secrets.jenkins_token + '@http://rcsjenkins-alb-348372192.us-west-2.elb.amazonaws.com/job/' + data.repository.name + '/build?delay=0sec';
     var options = {
         method: 'POST',
         url: url,
