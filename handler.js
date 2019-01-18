@@ -79,8 +79,7 @@ module.exports.githubWebhookListener = async (event, context) => {
     console.log('Ref Name:\t', data.ref);
     console.log('Commit ID:\t', data.commits[0].id);
     console.log('Committer:\t', data.head_commit.committer.name);
-    const url = 'http://gsimmons:116c7f5d588e62c1ae7aa979363f9afe38@rcsjenkins-alb-348372192.us-west-2.elb.amazonaws.com/job/' + data.repository.name + '/build?delay=0sec';
-    console.log('URL is\t', url);
+    const url = 'https://@jenkins.colibrigroup.com/job/' + data.repository.name + '/build?delay=0sec';
     var options = {
         method: 'POST',
         url: url,
@@ -96,8 +95,10 @@ module.exports.githubWebhookListener = async (event, context) => {
       console.log("POST request to Jenkins Server failed!");
     } else {
       console.log("POST request to Jenkins Server succeeded");
+     
     } 
-    
+   
+   console.log('********** Jenkins Job Complete **********');
    return {
         statusCode: 200,
         body: JSON.stringify({
