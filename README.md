@@ -1,7 +1,7 @@
 
 # Colibri Group Github webhook listener
 
-This repo cotanins code to run a GitHub webhook listener for use with GitHub <-> Jenkins.  The code for this webhook is forked from the Serverless Examples repo / [aws-node-github-webhook-listener](https://github.com/serverless/examples/tree/master/aws-node-github-webhook-listener).  
+This repo cotanins code to run a GitHub webhook listener for use with GitHub <-> Jenkins integration.  The code for this webhook is forked from the Serverless Examples repo / [aws-node-github-webhook-listener](https://github.com/serverless/examples/tree/master/aws-node-github-webhook-listener).  
 
 ## Use Case
 
