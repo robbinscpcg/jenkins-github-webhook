@@ -117,7 +117,7 @@ module.exports.githubWebhookListener = (event, context) => {
             decodedBinarySecret = buff.toString('ascii');
         }
     }
-    	
+    });
     /* Jenkins Handler Code */
     
     const github_data = JSON.parse(event.body);
