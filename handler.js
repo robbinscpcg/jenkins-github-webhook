@@ -7,7 +7,7 @@ function signRequestBody(key, body) {
     return `sha1=${crypto.createHmac('sha1', key).update(body, 'utf-8').digest('hex')}`;
 }
 
-module.exports.githubWebhookListener = (event, context) => {
+module.exports.githubWebhookListener = async (event, context) => {
 
     const token = process.env.GITHUB_WEBHOOK_SECRET;
     const headers = event.headers;
@@ -84,39 +84,21 @@ module.exports.githubWebhookListener = (event, context) => {
         region: region
     });
 
-    client.getSecretValue({SecretId: secretName}, function(err, data) {
-    if (err) {
-        if (err.code === 'DecryptionFailureException')
-            // Secrets Manager can't decrypt the protected secret text using the provided KMS key.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InternalServiceErrorException')
-            // An error occurred on the server side.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidParameterException')
-            // You provided an invalid value for a parameter.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'InvalidRequestException')
-            // You provided a parameter value that is not valid for the current state of the resource.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-        else if (err.code === 'ResourceNotFoundException')
-            // We can't find the resource that you asked for.
-            // Deal with the exception here, and/or rethrow at your discretion.
-            throw err;
-    }
-    else {
-        // Decrypts secret using the associated KMS CMK.
-        // Depending on whether the secret is a string or binary, one of these fields will be populated.
-        if ('SecretString' in data) {
-            secret = data.SecretString;
-        } else {
-            let buff = new Buffer(data.SecretBinary, 'base64');
-            decodedBinarySecret = buff.toString('ascii');
-        }
-    }
+   secretsmanager.getSecretValue(client, function(err, data) {
+     if (err) console.log(err, err.stack); // an error occurred
+     else     console.log(data);           // successful response
+   /*
+   data = {
+    ARN: "arn:aws:secretsmanager:us-west-2:123456789012:secret:MyTestDatabaseSecret-a1b2c3", 
+    CreatedDate: <Date Representation>, 
+    Name: "MyTestDatabaseSecret", 
+    SecretString: "{\n  \"username\":\"david\",\n  \"password\":\"BnQw&XDWgaEeT9XGTT29\"\n}\n", 
+    VersionId: "EXAMPLE1-90ab-cdef-fedc-ba987SECRET1", 
+    VersionStages: [
+       "AWSPREVIOUS"
+    ]
+   }
+   */
     });
     /* Jenkins Handler Code */
     
@@ -138,7 +120,7 @@ module.exports.githubWebhookListener = (event, context) => {
     };
 
     console.log("POST request to Colibri Jenkins Server");
-    let response = rp(options);
+    let response = await rp(options);
     
     if (response.statusCode != 200) {
       console.error(response.body);
@@ -154,4 +136,4 @@ module.exports.githubWebhookListener = (event, context) => {
             input: event
         })
     };
-};
+});

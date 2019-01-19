@@ -92,7 +92,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/github-webhook-listener/dev/1547872800201-2019-01-19T04:40:00.201Z/github-webhook-listener.zip"
+          "S3Key": "serverless/github-webhook-listener/dev/1547873924324-2019-01-19T04:58:44.324Z/github-webhook-listener.zip"
         },
         "FunctionName": "github-webhook-listener-dev-githubWebhookListener",
         "Handler": "handler.githubWebhookListener",
@@ -116,14 +116,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GithubWebhookListenerLambdaVersion0OM0AIp6Ciie0Ud8L3z0uArKUw3Rf0yf0oYBE3pYcw": {
+    "GithubWebhookListenerLambdaVersionG4AXGTFU9QWUvx005DRJnxBtRaCAl4XLL9WKBmQs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GithubWebhookListenerLambdaFunction"
         },
-        "CodeSha256": "YVP9+rYByyzV9UyYACqdLHClj19K80VqImcoDEp8RAM="
+        "CodeSha256": "i79QCX4rv9gisa00P0oHZvJvqmwqegrdx9OBJhLNj08="
       }
     },
     "ApiGatewayRestApi": {
@@ -242,7 +242,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1547872800233": {
+    "ApiGatewayDeployment1547873924354": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -312,7 +312,7 @@
     "GithubWebhookListenerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GithubWebhookListenerLambdaVersion0OM0AIp6Ciie0Ud8L3z0uArKUw3Rf0yf0oYBE3pYcw"
+        "Ref": "GithubWebhookListenerLambdaVersionG4AXGTFU9QWUvx005DRJnxBtRaCAl4XLL9WKBmQs"
       }
     },
     "ServiceEndpoint": {
