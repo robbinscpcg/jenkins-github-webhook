@@ -54,10 +54,5 @@ module.exports.secretManager = async (secretName) => {
             }
         }
     });
-    return {
-        statusCode: 200,
-        body: JSON.stringify({
-            input: data.SecretString
-        })
-    };
+    return secret;
 }

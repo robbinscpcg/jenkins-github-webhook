@@ -10,6 +10,9 @@
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._@'\",\\-\\/\\(\\)]+?)}",
       "name": "aws",
       "runtime": "nodejs8.10",
+      "environment": {
+        "GITHUB_WEBHOOK_SECRET": "REPLACE-WITH-YOUR-SECRET-HERE"
+      },
       "versionFunctions": true,
       "remoteFunctionData": null,
       "compiledCloudFormationTemplate": {
@@ -106,7 +109,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/github-webhook-listener/dev/1547844958408-2019-01-18T20:55:58.408Z/github-webhook-listener.zip"
+                "S3Key": "serverless/github-webhook-listener/dev/1547872800201-2019-01-19T04:40:00.201Z/github-webhook-listener.zip"
               },
               "FunctionName": "github-webhook-listener-dev-githubWebhookListener",
               "Handler": "handler.githubWebhookListener",
@@ -118,21 +121,26 @@
                 ]
               },
               "Runtime": "nodejs8.10",
-              "Timeout": 6
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "GITHUB_WEBHOOK_SECRET": "REPLACE-WITH-YOUR-SECRET-HERE"
+                }
+              }
             },
             "DependsOn": [
               "GithubWebhookListenerLogGroup",
               "IamRoleLambdaExecution"
             ]
           },
-          "GithubWebhookListenerLambdaVersion1EwcjtnHiLtyC8diBaQLPQSvuZZAiYV9zSC05o1AVQ": {
+          "GithubWebhookListenerLambdaVersion0OM0AIp6Ciie0Ud8L3z0uArKUw3Rf0yf0oYBE3pYcw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GithubWebhookListenerLambdaFunction"
               },
-              "CodeSha256": "m7OgoaRDB+BIHxIYxx/y3rw8nr/DRjgfCfOsr6naNQg="
+              "CodeSha256": "YVP9+rYByyzV9UyYACqdLHClj19K80VqImcoDEp8RAM="
             }
           },
           "ApiGatewayRestApi": {
@@ -251,7 +259,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1547844958441": {
+          "ApiGatewayDeployment1547872800233": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -321,7 +329,7 @@
           "GithubWebhookListenerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GithubWebhookListenerLambdaVersion1EwcjtnHiLtyC8diBaQLPQSvuZZAiYV9zSC05o1AVQ"
+              "Ref": "GithubWebhookListenerLambdaVersion0OM0AIp6Ciie0Ud8L3z0uArKUw3Rf0yf0oYBE3pYcw"
             }
           },
           "ServiceEndpoint": {
@@ -407,7 +415,7 @@
     "artifact": "/home/robbinscpcg/Workspace/jenkins-github-webhook/.serverless/github-webhook-listener.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/github-webhook-listener/dev/1547844958408-2019-01-18T20:55:58.408Z",
+    "artifactDirectoryName": "serverless/github-webhook-listener/dev/1547872800201-2019-01-19T04:40:00.201Z",
     "artifact": "github-webhook-listener.zip"
   }
 }
