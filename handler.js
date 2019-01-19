@@ -74,7 +74,7 @@ module.exports.githubWebhookListener = async (event, context) => {
 
     /* Jenkins Handler Code */
     const data = JSON.parse(event.body);
-    const secrets = secretManager("jenkins-prod-secrets");
+    const secrets = secretManager.secretManager("jenkins-prod-secrets");
 
     console.log('********** Executing Jenkins Job **********');
     console.log('Repo Name:\t', data.repository.name);

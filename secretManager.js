@@ -9,7 +9,7 @@ var AWS = require('aws-sdk'),
     secret,
     decodedBinarySecret;
 
-module.exports.secretManager = (secretName) => {
+module.exports.secretManager = async (secretName) => {
 
     // Create a Secrets Manager client
     var client = new AWS.SecretsManager({
@@ -54,5 +54,10 @@ module.exports.secretManager = (secretName) => {
             }
         }
     });
-
+    return {
+        statusCode: 200,
+        body: JSON.stringify({
+            input: data.SecretString
+        })
+    };
 }
